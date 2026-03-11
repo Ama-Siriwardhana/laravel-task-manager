@@ -89,7 +89,8 @@ npm run build
 
 9. Start the application
 
-php artisan serve
+php artisan serve or
+php -S 127.0.0.1:8000 -t public
 
 Then open:
 
