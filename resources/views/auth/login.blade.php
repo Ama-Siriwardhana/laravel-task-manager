@@ -77,7 +77,7 @@
                 </a>
             @endif
 
-        <x-primary-button class="bg-blue-800 hover:bg-blue-800 rounded-lg shadow transform hover:scale-110 transition duration-200 ml-6">
+        <x-primary-button class="bg-green-800 hover:bg-green-800 rounded-lg shadow transform hover:scale-110 transition duration-200 ml-6">
             {{ __('Log in') }}
         </x-primary-button>
     </form>

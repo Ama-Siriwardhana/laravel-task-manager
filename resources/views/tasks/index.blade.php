@@ -8,14 +8,16 @@
     <div class="py-10 bg-blue-100 min-h-screen">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
-            <div class="mb-6">
+            <div class="flex justify-center">
                 <a href="{{ route('tasks.create') }}"
-                   class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-800 hover:shadow-xl transition duration-300">
-                    Create Task
+                class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg shadow
+                        hover:bg-blue-800 hover:shadow-xl
+                        transform hover:scale-110 transition duration-300 mb-6">
+                    + Add a new task
                 </a>
             </div>
 
-            <form method="GET" action="{{ route('tasks.index') }}" class="mb-6 flex flex-wrap gap-4 items-center">
+            <form method="GET" action="{{ route('tasks.index') }}" class="mb-6 mt-6 flex flex-wrap gap-4 items-center">
                 <input type="text"
                        name="search"
                        value="{{ request('search') }}"

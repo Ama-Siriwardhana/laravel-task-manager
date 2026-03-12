@@ -13,8 +13,11 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
         
     </head>
+
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
             @include('layouts.navigation')
@@ -65,6 +68,54 @@
             timer: 3000,
             timerProgressBar: true
         });
+        </script>
+        @endif
+
+        @if(session('login'))
+        <script>
+        Swal.fire({
+            icon: 'success',
+            title: "<span style='font-size:16px'>{{ session('login') }}</span>",
+            position: 'center',
+            background: '#d1fae5',
+            color: '#065f46',
+            showConfirmButton: false,
+            timer: 2000,
+            width: '600px',
+            customClass: {
+                popup: 'rounded-2xl shadow-xl py-6 px-3'
+            },
+            showClass: {
+                popup: 'animate__animated animate__fadeInDown'
+            },
+            hideClass: {
+                popup: 'animate__animated animate__fadeOutUp'
+            }
+        });       
+        </script>
+        @endif
+
+        @if(session('register'))
+        <script>
+        Swal.fire({
+            icon: 'success',
+            title: "<span style='font-size:16px'>{{ session('register') }}</span>",
+            position: 'center',
+            background: '#d1fae5',
+            color: '#065f46',
+            showConfirmButton: false,
+            timer: 2000,
+            width: '600px',
+            customClass: {
+                popup: 'rounded-2xl shadow-xl py-6 px-3'
+            },
+            showClass: {
+                popup: 'animate__animated animate__fadeInDown'
+            },
+            hideClass: {
+                popup: 'animate__animated animate__fadeOutUp'
+            }
+        });       
         </script>
         @endif
     </body>
