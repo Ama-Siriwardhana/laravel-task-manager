@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
-    public function dashboard()
+    public function dashboard(Request $request)
     {
         $user = Auth::user();
 
@@ -17,13 +17,37 @@ class TaskController extends Controller
         $inProgressTasks = $user->tasks()->where('status', 'in_progress')->count();
         $completedTasks = $user->tasks()->where('status', 'completed')->count();
 
+            $days = (int) $request->input('days', 3);
+            $limit = (int) $request->input('limit', 5);
+
+        $dueSoon = $user->tasks()
+            ->whereNotNull('due_date')
+            ->whereDate('due_date', '>=', now()->toDateString())
+            ->whereDate('due_date', '<=', now()->addDays($days)->toDateString())
+            ->where('status', '!=', 'completed')
+            ->orderBy('due_date')
+            ->take($limit)
+            ->get();
+
+        $overdueTasks = $user->tasks()
+            ->whereNotNull('due_date')
+            ->whereDate('due_date', '<', now()->toDateString())
+            ->where('status', '!=', 'completed')
+            ->orderBy('due_date')
+            ->get();
+
         return view('dashboard', compact(
             'totalTasks',
             'pendingTasks',
             'inProgressTasks',
-            'completedTasks'
+            'completedTasks',
+            'dueSoon',
+            'overdueTasks',
+            'days',
+            'limit'
         ));
     }
+
    public function index(Request $request)
     {
         $query = Task::where('user_id', auth()->id());
